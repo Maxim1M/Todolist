@@ -7,10 +7,11 @@ export type ValueButton = 'all' | 'active' | 'completed'
 
 function App() {
     let [tasks1, setTasks1] = useState([
-        {id: v1(), title: "HTML&CSS", isDone: true},
-        {id: v1(), title: "JS", isDone: true},
-        {id: v1(), title: "ReactJS", isDone: false},
-        {id: v1(), title: "Native ", isDone: false}
+        {id: v1(), title: "Harry Potter", isDone: true},
+        {id: v1(), title: "The Green Mile", isDone: true},
+        {id: v1(), title: "Murder on the Orient Express", isDone: false},
+        {id: v1(), title: "The Fellowship of the Ring", isDone: false},
+        {id: v1(), title: "The Hitchhiker's Guide to the Galaxy", isDone: false}
     ])
 
     //delete tasks
@@ -32,7 +33,7 @@ function App() {
     }
 
     return (
-        <div>
+        <div className="App">
             <Todolist
                 title={'What to learn'}
                 tasks={removeTasks}
