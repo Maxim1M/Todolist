@@ -21,15 +21,24 @@ function App() {
     }
 
     //filter tasks
-    let[remTas,setRemTas] = useState<ValueButton>('all')
+    let [remTas, setRemTas] = useState<ValueButton>('all')
     let removeTasks = tasks1
-    function filteredTasks (f: ValueButton) {
+
+    function filteredTasks(f: ValueButton) {
         setRemTas(f)
     }
+
     if (remTas === 'active') {
         removeTasks = tasks1.filter(fil => !fil.isDone)
     } else if (remTas === 'completed') {
         removeTasks = tasks1.filter(fil => fil.isDone)
+    }
+
+    //add newInputTasks1
+    const newInputTasks1 = (n: string) => {
+        let arr = {id: v1(), title: n, isDone: false}
+        let newTask1 = [arr, ...tasks1]
+        setTasks1(newTask1)
     }
 
     return (
@@ -39,6 +48,7 @@ function App() {
                 tasks={removeTasks}
                 deleteTasks={deleteTasks}
                 filteredTasks={filteredTasks}
+                newInputTasks1={newInputTasks1}
             />
         </div>
     );
