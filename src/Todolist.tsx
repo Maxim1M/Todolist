@@ -3,7 +3,7 @@ import {FilterValuesType} from './App';
 import {Input} from "./Components/Input";
 import {EditableSpan} from "./Components/EditableSpan";
 
-type TaskType = {
+export type TaskType = {
     id: string
     title: string
     isDone: boolean
@@ -19,7 +19,8 @@ type PropsType = {
     changeTaskStatus: (todolistID: string, taskId: string, isDone: boolean) => void
     filter: FilterValuesType
     updateTodolist: (todolistID: string, newTitle: string) => void
-    updateTasks: (todolistID: string, id: string, newTitle: string) => void
+    updateTask: (todolistID: string, id: string, newTitle: string) => void
+    removeTodolist: (todolistID: string) => void
 }
 
 export function Todolist(props: PropsType) {
@@ -35,9 +36,14 @@ export function Todolist(props: PropsType) {
         props.addTask(props.todolistID, newTitle)
     }
 
+    const onClickRemoveTododHandler = () => {
+        props.removeTodolist(props.todolistID)
+    }
+
     return <div>
         <h3>
             <EditableSpan title={props.title} callBack={callBackTodoHandler}/>
+            <button onClick={onClickRemoveTododHandler}>x</button>
         </h3>
         <Input callBack={callBackInputHandler}/>
         <ul>
@@ -48,7 +54,7 @@ export function Todolist(props: PropsType) {
                         props.changeTaskStatus(props.todolistID, t.id, e.currentTarget.checked);
                     }
                     const callBackTasksHandler = (newTitle: string) => {
-                        props.updateTasks(props.todolistID, t.id, newTitle)
+                        props.updateTask(props.todolistID, t.id, newTitle)
                     }
 
                     return <li key={t.id} className={t.isDone ? "is-done" : ""}>
